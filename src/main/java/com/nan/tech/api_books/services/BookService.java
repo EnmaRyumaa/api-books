@@ -44,6 +44,18 @@ public class BookService {
         return new BookDTO(book);
     }
 
+    public void delete (Long id) {
+        try {
+            if(bookRepository.existsById(id)) {
+                bookRepository.deleteById(id);
+            } else {
+                throw new RuntimeException("Book not found");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void copyEntitieForDto(Book book, BookDTO bookDTO) {
         book.setName(bookDTO.getName());
         book.setAuthor(bookDTO.getAuthor());

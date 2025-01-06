@@ -37,4 +37,9 @@ public class BookController {
     public BookDTO update (@PathVariable Long id, @RequestBody BookDTO bookDto) {
         return bookService.update(id, bookDto);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public void delete (@PathVariable Long id) {
+        bookService.delete(id);
+    }
 }
