@@ -36,6 +36,14 @@ public class BookService {
         return new BookDTO(book);
     }
 
+    public BookDTO update (Long id, BookDTO bookDTO) {
+        Book book = bookRepository.findById(id).get();
+        copyEntitieForDto(book, bookDTO);
+        book = bookRepository.save(book);
+
+        return new BookDTO(book);
+    }
+
     private void copyEntitieForDto(Book book, BookDTO bookDTO) {
         book.setName(bookDTO.getName());
         book.setAuthor(bookDTO.getAuthor());
