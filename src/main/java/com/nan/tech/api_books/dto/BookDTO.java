@@ -1,5 +1,6 @@
 package com.nan.tech.api_books.dto;
 
+import com.nan.tech.api_books.entities.Book;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -24,4 +25,11 @@ public class BookDTO {
     @NotBlank
     @Size(min = 10, max = 500)
     private String description;
+
+    public BookDTO (Book book) {
+        this.id = book.getId();
+        this.name = book.getName();
+        this.author = book.getAuthor();
+        this.description = book.getDescription();
+    }
 }
