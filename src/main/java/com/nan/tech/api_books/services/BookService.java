@@ -27,4 +27,18 @@ public class BookService {
 
         return books.map(x -> new BookDTO(x));
     }
+
+    public BookDTO insert (BookDTO bookDTO) {
+        Book book = new Book();
+        copyEntitieForDto(book, bookDTO);
+        book = bookRepository.save(book);
+
+        return new BookDTO(book);
+    }
+
+    private void copyEntitieForDto(Book book, BookDTO bookDTO) {
+        book.setName(bookDTO.getName());
+        book.setAuthor(bookDTO.getAuthor());
+        book.setDescription(bookDTO.getDescription());
+    }
 }
