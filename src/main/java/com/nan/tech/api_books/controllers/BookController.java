@@ -3,6 +3,8 @@ package com.nan.tech.api_books.controllers;
 import com.nan.tech.api_books.dto.BookDTO;
 import com.nan.tech.api_books.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,5 +22,12 @@ public class BookController {
         BookDTO bookDto = bookService.findById(id);
 
         return bookDto;
+    }
+
+    @GetMapping
+    public Page<BookDTO> findAll (Pageable pageable) {
+        Page<BookDTO> books = bookService.findAll(pageable);
+
+        return books;
     }
 }
